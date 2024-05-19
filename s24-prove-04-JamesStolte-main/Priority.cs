@@ -1,4 +1,6 @@
-﻿namespace prove_04;
+﻿using System.Diagnostics;
+
+namespace prove_04;
 
 /*
  * CSE212 
@@ -23,8 +25,22 @@ public static class Priority {
         // Scenario: 
         // Expected Result: 
         Console.WriteLine("Test 1");
-
-        // Defect(s) Found: 
+        var players = new PriorityQueue();
+        players.Enqueue("Bob", 2);
+        players.Enqueue("Joe", 3);
+        players.Enqueue("Sam", 1);
+        Console.WriteLine("Priory queue is: ");
+        Console.WriteLine(players.ToString());
+        var result = players.Dequeue();
+        Console.WriteLine(result);
+        Trace.Assert(result == "Joe");
+        result = players.Dequeue();
+        Console.WriteLine(result);
+        Trace.Assert(result == "Bob");
+        result = players.Dequeue();
+        Console.WriteLine(result);
+        Trace.Assert(result == "Sam");
+        // Defect(s) Found: Dequeue is not taking the highest priority item out of the queue.  No other problems were found outside of user error.
 
         Console.WriteLine("---------");
 
